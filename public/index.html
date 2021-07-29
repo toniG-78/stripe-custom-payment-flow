@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Stripe Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: grid;
+        place-items: center;
+        margin-top: 3rem;
+      }
+      form {
+        width: 350px;
+      }
+
+      #card-element,
+      input {
+        margin-top: 0.5rem;
+        border: 1px solid rgb(10 10 10 / 0.2);
+        border-radius: 10px;
+        padding: 0.8rem;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+        outline: none;
+        font-size: 1rem;
+      }
+
+      #btnPay,
+      #btnReload {
+        padding: 0.5rem;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        background-color: rgba(137, 43, 226, 0.623);
+        transition: 0.2s ease;
+      }
+
+      #btnPay:hover,
+      #btnReload:hover {
+        background-color: rgb(137, 43, 226);
+      }
+
+      #btnReload {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+      }
+
+      p {
+        visibility: visible;
+        opacity: 1;
+        transition: 0.2s ease;
+      }
+
+      .hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #btnPay:disabled,
+      #btnReload:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      #btnPay:hover:disabled,
+      #btnReload:hover:disabled {
+        background-color: rgba(137, 43, 226, 0.623);
+      }
+    </style>
+    <script defer src="https://js.stripe.com/v3/"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Checkout Page ✔</h1>
+      <hr />
+      <br />
+    </header>
+    <main>
+      <p>Product: T-shirt</p>
+      <p>Price: $100</p>
+      <br />
+      <form>
+        <!-- NAME -->
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="Toni G" />
+        <!-- EMAIL -->
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="test@mail.com" />
+
+        <!-- STRIPE CARD ELEMENT -->
+        <label for="card-element">Card:</label>
+        <div id="card-element"></div>
+        <br />
+        <button id="btnPay">Pay</button>
+      </form>
+      <br />
+      <p class="message hidden">
+        Result:
+        <a href="" target="_blank">Stripe Dashboard</a>
+      </p>
+      <p id="card-error"></p>
+      <br />
+      <button id="btnReload" onclick="location.reload()">Reload Page</button>
+    </main>
+  </body>
+</html>
